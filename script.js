@@ -34,21 +34,40 @@ if (counter && 'IntersectionObserver' in window) {
 }
 
 const form = document.querySelector('#lead-form');
-form?.addEventListener('submit', event => {
+form?.addEventListener('submit', async event => {
   event.preventDefault();
-  const data = new FormData(form);
-  const name = String(data.get('name') || '').trim();
-  const email = String(data.get('email') || '').trim();
-  const phone = String(data.get('phone') || '').trim();
-  const service = String(data.get('service') || '').trim();
-  const message = String(data.get('message') || '').trim();
-  // Enquiries are prepared for the agency inbox configured by the site owner.
-  const recipient = 'info@topjecweb.com';
-  const subject = encodeURIComponent(`New website enquiry — ${service}`);
-  const body = encodeURIComponent(
-    `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nService: ${service}\n\nProject details:\n${message}`
-  );
   const status = document.querySelector('#form-status');
-  status.textContent = 'Opening your email app with the enquiry addressed to info@topjecweb.com. The customer must send the email from their email app.';
-  window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+  const submitButton = form.querySelector('button[type="submit"]');
+  const originalButtonText = submitButton?.innerHTML;
+
+  if (status) status.textContent = 'Sending your enquiry…';
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending…';
+  }
+
+  try {
+    const response = await fetch('https://formsubmit.app/f/7984qvnzu7', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    });
+
+    let result = {};
+    try { result = await response.json(); } catch (_) {}
+
+    if (!response.ok || result.success === false || result.error) {
+      throw new Error(result.message || result.error || 'Submission failed');
+    }
+
+    form.reset();
+    if (status) status.textContent = 'Thank you! Your enquiry has been submitted. TOPJEC WEB will get back to you soon.';
+  } catch (error) {
+    if (status) status.textContent = 'Sorry, your enquiry could not be sent right now. Please try again in a moment or email info@topjecweb.com directly.';
+  } finally {
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.innerHTML = originalButtonText || 'Send enquiry ↗';
+    }
+  }
 });
