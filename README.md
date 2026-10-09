@@ -9,10 +9,10 @@ A responsive static website for Meta Ads, Instagram Marketing, Website Developme
 
 ## Before publishing
 1. Confirm the exact domain you own (for example, `topjecweb.com`). "TOPJEC WEB" by itself is not a complete domain name.
-2. In `script.js`, replace `hello@yourdomain.com` with your actual business email.
+2. The enquiry form is configured for `info@topjecweb.com` and includes a required phone number field.
 3. Replace the illustrative `+86%` campaign metric in the hero with a non-numeric statement or a real, substantiated result before using the site publicly.
 4. Add your real phone/WhatsApp link, social profile links, privacy policy and business address if applicable.
-5. The enquiry form opens the visitor's default email app; it does not save submissions to a database. For direct form collection, connect a form provider or backend.
+5. The enquiry form opens the visitor's default email app with the enquiry addressed to `info@topjecweb.com`; the visitor must press Send. It does not automatically send email or save submissions to a database. For automatic delivery, connect a form provider or backend.
 
 ## Publish with GitHub Pages
 1. Sign in at https://github.com and create a **public** repository named `topjec-web`.

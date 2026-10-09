@@ -39,15 +39,16 @@ form?.addEventListener('submit', event => {
   const data = new FormData(form);
   const name = String(data.get('name') || '').trim();
   const email = String(data.get('email') || '').trim();
+  const phone = String(data.get('phone') || '').trim();
   const service = String(data.get('service') || '').trim();
   const message = String(data.get('message') || '').trim();
-  // Replace this address with your real business email before publishing.
-  const recipient = 'hello@yourdomain.com';
+  // Enquiries are prepared for the agency inbox configured by the site owner.
+  const recipient = 'info@topjecweb.com';
   const subject = encodeURIComponent(`New website enquiry — ${service}`);
   const body = encodeURIComponent(
-    `Name: ${name}\nEmail: ${email}\nService: ${service}\n\nProject details:\n${message}`
+    `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nService: ${service}\n\nProject details:\n${message}`
   );
   const status = document.querySelector('#form-status');
-  status.textContent = 'Opening your email app. Replace hello@yourdomain.com in script.js with your real email before launch.';
+  status.textContent = 'Opening your email app with the enquiry addressed to info@topjecweb.com. The customer must send the email from their email app.';
   window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
 });
