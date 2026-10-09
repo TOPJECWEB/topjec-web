@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Payment status | TOPJEC WEB</title>
+<style>
+:root{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:#172033;background:#fff}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:linear-gradient(145deg,#fff,#f5f7ff)}
+main{max-width:560px;width:100%;padding:36px;border:1px solid #e8eaf2;border-radius:24px;box-shadow:0 20px 60px #27315a12;background:#fff;box-sizing:border-box}
+h1{font-size:clamp(28px,5vw,40px);margin:0 0 12px}p{color:#5b6477;line-height:1.6}
+.status{padding:14px;border-radius:12px;background:#f4f5f9;margin:20px 0;overflow-wrap:anywhere}
+a{display:inline-block;padding:12px 18px;background:#635bdb;color:#fff;border-radius:10px;text-decoration:none}
+</style>
+</head>
+<body><main>
+<p>TOPJEC WEB · SECURE CHECKOUT</p><h1 id="heading">Checking your payment…</h1>
+<p id="description">Please wait while we confirm the payment directly with Cashfree.</p>
+<div class="status" id="details">Do not close this page until verification finishes.</div>
+<a href="/">Return to TOPJEC WEB</a>
+<script>
+(async()=>{
+ const BACKEND_URL='https://topjec-cashfree-backend.vercel.app';
+ const params=new URLSearchParams(location.search);
+ const orderId=params.get('order_id');
+ const heading=document.getElementById('heading'), description=document.getElementById('description'), details=document.getElementById('details');
+ if(!orderId){heading.textContent='Order not found';description.textContent='We could not find an order ID. Please contact TOPJEC WEB if you completed a payment.';details.textContent='No order ID provided.';return;}
+ try{
+  const r=await fetch(BACKEND_URL+'/api/verify-order?order_id='+encodeURIComponent(orderId),{cache:'no-store'});
+  const d=await r.json();
+  if(!r.ok) throw new Error(d.error||'Verification failed');
+  if(d.status==='PAID'){heading.textContent='Payment confirmed';description.textContent='Cashfree has confirmed your payment.';details.textContent='Order: '+d.orderId+' · Amount: ₹'+d.amount+' '+d.currency;}
+  else if(d.status==='PENDING'){heading.textContent='Payment is pending';description.textContent='Your payment is not confirmed yet. Please wait a moment and refresh this page.';details.textContent='Order: '+d.orderId+' · Status: Pending';}
+  else {heading.textContent='Payment not confirmed';description.textContent='We could not confirm a successful payment. If money was deducted, please contact us before paying again.';details.textContent='Order: '+d.orderId+' · Status: '+d.status;}
+ }catch(e){heading.textContent='We could not verify yet';description.textContent='Please refresh in a moment. If money was deducted, do not pay again until the status is checked.';details.textContent=e.message;}
+})();
+</script></main></body></html>
