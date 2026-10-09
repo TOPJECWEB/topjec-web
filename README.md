@@ -44,3 +44,10 @@ The deploy-ready multi-page package includes these service detail pages:
 - `lead-generation.html` — lead funnel and enquiry workflow
 
 Shared page styling is in `service-pages.css`. Keep all HTML, CSS and JavaScript files together in the repository root. The service cards on `index.html` link to the relevant detail pages. The contact form uses the configured FormSubmit.app endpoint in `script.js`; test an enquiry after deploying and complete any recipient verification required by the form provider.
+
+
+## White interactive edition
+- Pure white, clean modern theme with soft purple/cyan accents.
+- Direct service links in the top navigation on desktop and mobile.
+- Scroll progress indicator, back-to-top control, gentle reveal animations, interactive FAQ accordions, responsive menu, and contact form submission via FormSubmit.app.
+- Upload all files in this folder to the GitHub repository root to publish.

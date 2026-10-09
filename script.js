@@ -71,3 +71,46 @@ form?.addEventListener('submit', async event => {
     }
   }
 });
+
+
+// Small, accessible interactions shared by the homepage and service pages.
+(() => {
+  const progress = document.querySelector('.scroll-progress');
+  const topButton = document.querySelector('.back-to-top');
+  const updateScrollUI = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const amount = max > 0 ? (window.scrollY / max) * 100 : 0;
+    if (progress) progress.style.width = `${amount}%`;
+    if (topButton) topButton.classList.toggle('visible', window.scrollY > 420);
+  };
+  window.addEventListener('scroll', updateScrollUI, { passive: true });
+  updateScrollUI();
+  topButton?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealTargets = document.querySelectorAll('.service-card, .process-step, .detail-step, .faq-item, .about-panel, .contact-form, .included-panel');
+  if (!reduceMotion && 'IntersectionObserver' in window && revealTargets.length) {
+    document.documentElement.classList.add('reveal-ready');
+    revealTargets.forEach((el) => el.classList.add('reveal'));
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealTargets.forEach((el) => revealObserver.observe(el));
+  }
+
+  // Keep FAQ accordions tidy: opening one closes the others on the same page.
+  document.querySelectorAll('.faq-list').forEach((list) => {
+    list.querySelectorAll('details').forEach((item) => {
+      item.addEventListener('toggle', () => {
+        if (item.open) list.querySelectorAll('details').forEach((other) => {
+          if (other !== item) other.open = false;
+        });
+      });
+    });
+  });
+})();
