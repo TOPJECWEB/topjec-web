@@ -160,7 +160,7 @@ form?.addEventListener('submit', async event => {
       if (!response.ok || !data.paymentSessionId) {
         throw new Error(data.error || 'Could not start checkout. Please check your details and try again.');
       }
-      const cashfree = window.Cashfree({ mode: 'sandbox' });
+      const cashfree = window.Cashfree({ mode: 'production' });
       await cashfree.checkout({ paymentSessionId: data.paymentSessionId, redirectTarget: '_self' });
     } catch (error) {
       window.alert(error.message || 'Checkout could not be started. Please try again.');
