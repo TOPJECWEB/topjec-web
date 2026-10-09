@@ -33,3 +33,14 @@ A responsive static website for Meta Ads, Instagram Marketing, Website Developme
 Official instructions: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
 
 DNS changes can take up to 24 hours. GitHub Pages is static hosting; it does not run a server-side backend or store contact form submissions.
+
+## Multi-page service website
+
+The deploy-ready multi-page package includes these service detail pages:
+- `meta-ads.html` — Meta / Facebook Ads campaign workflow
+- `instagram-marketing.html` — Instagram content and marketing workflow
+- `website-development.html` — website design, development and launch workflow
+- `seo.html` — technical and on-page SEO workflow
+- `lead-generation.html` — lead funnel and enquiry workflow
+
+Shared page styling is in `service-pages.css`. Keep all HTML, CSS and JavaScript files together in the repository root. The service cards on `index.html` link to the relevant detail pages. The contact form uses the configured FormSubmit.app endpoint in `script.js`; test an enquiry after deploying and complete any recipient verification required by the form provider.
