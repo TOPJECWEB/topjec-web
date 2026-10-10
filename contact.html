@@ -1,0 +1,91 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contact TOPJEC WEB for digital marketing, website development, SEO and lead generation services.">
+  <meta name="theme-color" content="#f7f9fc">
+  <title>Contact Us | TOPJEC WEB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .policy-page { max-width: 900px; margin: 0 auto; padding: 70px 24px 90px; }
+    .policy-page h1 { margin: 12px 0 20px; font-size: clamp(2.3rem, 6vw, 4rem); }
+    .policy-page h2 { margin: 32px 0 12px; }
+    .policy-page p, .policy-page li { line-height: 1.8; }
+    .policy-panel { margin-top: 24px; padding: 26px; border: 1px solid #e2e8f0; border-radius: 18px; background: rgba(255,255,255,.8); }
+    .policy-panel a { overflow-wrap: anywhere; }
+    .policy-nav { display:flex; flex-wrap:wrap; gap:16px; margin-top:30px; }
+    .policy-nav a { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html#home" aria-label="TOPJEC WEB home">
+      <span class="brand-mark">T<span>✳</span></span>
+      <span>TOPJEC <b>WEB</b></span>
+    </a>
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav class="nav">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#packages">Packages</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="refunds.html">Refunds &amp; Cancellations</a>
+      <a href="index.html#contact" class="nav-cta">Let's talk <span>↗</span></a>
+    </nav>
+  </header>
+
+  <main class="policy-page">
+    <div class="eyebrow">WE'RE HERE TO HELP</div>
+    <h1>Contact Us</h1>
+    <p>Welcome to TOPJEC WEB. If you have questions about our services, packages, payments, project requirements or an existing order, please contact us using the details below.</p>
+
+    <section class="policy-panel">
+      <h2>Customer Support</h2>
+      <p><strong>Business name:</strong> TOPJEC WEB</p>
+      <p><strong>Email:</strong> <a href="mailto:info@topjecweb.com">info@topjecweb.com</a></p>
+      <p><strong>Phone:</strong> <a href="tel:+919824661122">+91 98246 61122</a></p>
+      <p><strong>Website:</strong> <a href="https://topjecweb.com/">https://topjecweb.com/</a></p>
+    </section>
+
+    <h2>How We Can Help</h2>
+    <ul>
+      <li>Questions about Meta Ads and Instagram marketing.</li>
+      <li>Website development and SEO enquiries.</li>
+      <li>Lead generation service enquiries.</li>
+      <li>Payment confirmation and order-related questions.</li>
+      <li>Requests concerning cancellations, refunds or service issues.</li>
+    </ul>
+
+    <h2>When Contacting Us</h2>
+    <p>Please include your name, registered email address, order reference (if available), and a clear description of your question. Please do not email passwords, card details, OTPs or other sensitive payment credentials.</p>
+    <p>We will review your enquiry and respond using the contact information you provide. Response times may vary depending on the nature of the request.</p>
+
+    <nav class="policy-nav" aria-label="Related policies">
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="refunds.html">Refunds &amp; Cancellations</a>
+      <a href="index.html">Back to Home</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="index.html#home"><span class="brand-mark">T<span>✳</span></span><span>TOPJEC <b>WEB</b></span></a>
+    <span>Digital growth, thoughtfully built.</span>
+    <nav aria-label="Legal and support links">
+      <a href="contact.html">Contact Us</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="refunds.html">Refunds &amp; Cancellations</a>
+    </nav>
+    <span>© <span id="year"></span> TOPJEC WEB</span>
+  </footer>
+  <script src="script.js"></script>
+  <script>
+    const yearElement = document.getElementById('year');
+    if (yearElement) yearElement.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
